@@ -21,15 +21,6 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
 
-    //dom
-    var body = document.body;
-    var todo = document.getElementById('todo');
-    var send = document.getElementById('send');
-    var list = document.getElementById('list');
-    var listR = document.getElementById('listR');
-    var reverse = document.getElementById('reverse');
-    //todos
-    var todos = firebase.database().ref('todos');
 
     // 送出按鈕,寫入到資料庫
 
