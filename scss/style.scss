@@ -1,0 +1,66 @@
+@keyframes loading {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.demo {
+    display: block;
+    input {
+        display: none;
+        &:checked~label {
+            background: #B0095C;
+            &:before{
+                content: "Checkbox is checked.";
+            }
+            & ~ .circles{
+                //和checkbox同層的元素，開始進行animation
+        animation: loading 3s infinite linear;
+        -webkit-animation: loading 3s infinite linear;
+            }
+    }
+}
+    label {
+        display: block;
+        width: 100px;
+        height: 100px;
+        background: orange;
+        &:before{
+            content: "Check me";
+        }
+        
+    }
+
+    .circles{
+        outline: none;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #557777 50%, transparent 50%), linear-gradient(90deg, #ee6655 100%, transparent 100%), linear-gradient(135deg, #ffeebb 50%, transparent 50%) 100% 0%, linear-gradient(180deg, #ffcc55 100%, transparent 100%) 100% 0%, linear-gradient(225deg, #ffaa22 50%, transparent 50%) 100% 100%, linear-gradient(270deg, #ccddaa 100%, transparent 100%) 100% 100%, linear-gradient(315deg, #77aa88 50%, transparent 50%) 0% 100%, linear-gradient(360deg, #99cc99 100%, transparent 100%) 0% 100%;
+        width: 150px;
+        height: 150px;
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+    }
+}
+
+#a1 {}
+
+.demo1 {
+    div {
+        height: 22px;
+        line-height: 22px;
+        padding: 8px;
+        border: 1px dashed orange;
+        margin-bottom: 8px;
+        color: white;
+        text-align: center;
+        &:hover {
+            background: orange
+        }
+        &:hover~div {
+            background: #B0095C
+        }
+    }
+}

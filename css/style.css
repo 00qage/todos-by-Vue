@@ -1,0 +1,57 @@
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+.demo {
+  display: block; }
+  .demo input {
+    display: none; }
+    .demo input:checked ~ label {
+      background: #B0095C; }
+      .demo input:checked ~ label:before {
+        content: "Checkbox is checked."; }
+      .demo input:checked ~ label ~ .circles {
+        animation: loading 3s infinite linear;
+        -webkit-animation: loading 3s infinite linear; }
+  .demo label {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: orange; }
+    .demo label:before {
+      content: "Check me"; }
+  .demo .circles {
+    outline: none;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(45deg, #557777 50%, transparent 50%), -webkit-linear-gradient(left, #ee6655 100%, transparent 100%), -webkit-linear-gradient(315deg, #ffeebb 50%, transparent 50%) 100% 0%, -webkit-linear-gradient(top, #ffcc55 100%, transparent 100%) 100% 0%, -webkit-linear-gradient(225deg, #ffaa22 50%, transparent 50%) 100% 100%, -webkit-linear-gradient(right, #ccddaa 100%, transparent 100%) 100% 100%, -webkit-linear-gradient(135deg, #77aa88 50%, transparent 50%) 0% 100%, -webkit-linear-gradient(bottom, #99cc99 100%, transparent 100%) 0% 100%;
+    background: -o-linear-gradient(45deg, #557777 50%, transparent 50%), -o-linear-gradient(left, #ee6655 100%, transparent 100%), -o-linear-gradient(315deg, #ffeebb 50%, transparent 50%) 100% 0%, -o-linear-gradient(top, #ffcc55 100%, transparent 100%) 100% 0%, -o-linear-gradient(225deg, #ffaa22 50%, transparent 50%) 100% 100%, -o-linear-gradient(right, #ccddaa 100%, transparent 100%) 100% 100%, -o-linear-gradient(135deg, #77aa88 50%, transparent 50%) 0% 100%, -o-linear-gradient(bottom, #99cc99 100%, transparent 100%) 0% 100%;
+    background: linear-gradient(45deg, #557777 50%, transparent 50%), linear-gradient(90deg, #ee6655 100%, transparent 100%), linear-gradient(135deg, #ffeebb 50%, transparent 50%) 100% 0%, linear-gradient(180deg, #ffcc55 100%, transparent 100%) 100% 0%, linear-gradient(225deg, #ffaa22 50%, transparent 50%) 100% 100%, linear-gradient(270deg, #ccddaa 100%, transparent 100%) 100% 100%, linear-gradient(315deg, #77aa88 50%, transparent 50%) 0% 100%, linear-gradient(360deg, #99cc99 100%, transparent 100%) 0% 100%;
+    width: 150px;
+    height: 150px;
+    background-size: 50% 50%;
+    background-repeat: no-repeat; }
+
+.demo1 div {
+  height: 22px;
+  line-height: 22px;
+  padding: 8px;
+  border: 1px dashed orange;
+  margin-bottom: 8px;
+  color: white;
+  text-align: center; }
+  .demo1 div:hover {
+    background: orange; }
+  .demo1 div:hover ~ div {
+    background: #B0095C; }

@@ -1,0 +1,130 @@
+@import "reset";
+body {
+  font-family: '微軟正黑體', 'Courier New', Courier, monospace;
+  margin: 0;
+  background: #e6e6e6;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 550px;
+}
+
+.header {
+  h1 {
+    // top: -155px;
+    margin: 20px 0;
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+  }
+  .todo-input-box {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+.todo {
+  outline: none;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  padding: 16px 16px 16px 60px;
+  border: none;
+  background: #ffffff;
+  box-shadow: inset 0 -2px 10px rgba(0,0,0,.03);
+  font-size: 24px;
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #e6e6e6;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #e6e6e6;
+  }
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #e6e6e6;
+  }
+}
+
+.todo-content {
+  // text-align: center;
+  position: relative;
+  .toggle-all {
+    outline: none;
+    position: absolute;
+    left: -6px;
+    top: -60px;
+    appearance: none;
+    -webkit-appearance: none;
+    line-height: 50px;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    &:checked~label {
+      background: #B0095C;
+      &:before {
+        content: "Checkbox is checked.";
+      }
+      &~.circles {
+        //和checkbox同層的元素，開始進行animation
+        animation: loading 3s infinite linear;
+        -webkit-animation: loading 3s infinite linear;
+      }
+    }
+    &::before {
+      content: '❯';
+      box-sizing: border-box;
+      font-size: 30px;
+      color: #e6e6e6;
+      padding: 10px 20px 10px 20px;
+    }
+    &:checked::before {
+      color: #737373;
+    }
+  }
+  label {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: orange;
+    &:before {
+      content: "Check me";
+    }
+  }
+}
+
+// .list,
+// .listR {
+//   position: absolute; // top: 0;
+//   // bottom: 0;
+//   // left: 0;
+//   // right: 0;
+//   width: 100px; // left: 50%;
+//   // height: 350px;
+//   margin: 10px auto;
+//   padding: 10px;
+//   border: 5px solid #2ebd59;
+//   overflow: scroll;
+//   opacity: 0;
+//   transform: translateX(-1100px);
+//   -webkit-transform: translateX(-1100px);
+//   -moz-transform: translateX(-1100px);
+//   -ms-transform: translateX(-1100px);
+//   -o-transform: translateX(-1100px);
+//   transition: all .9s ease;
+//   -webkit-transition: all .9s ease;
+//   -moz-transition: all .9s ease;
+//   -ms-transition: all .9s ease;
+//   -o-transition: all .9s ease;
+// }
+
+.active {
+  opacity: 1;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+}
