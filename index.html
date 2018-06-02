@@ -12,25 +12,21 @@
 </head>
 
 <body>
-    <section class="wrap">
+    <section class="wrap" id="app">
         <header class="header">
             <h1>todos</h1>
             <div class="todo-input-box">
-                <input type='text' class="todo" id="todo" placeholder="What needs to be done?" autocomplete="off" autofocus>
+                <input type='text' class="todo" id="todo" placeholder="What needs to be done?" autocomplete="off" autofocus v-model="newtodo" @keyup.enter="addtodo">
             </div>
-            <!-- <input type="button" id="send" value="send"> -->
-            <!-- <input type="button" value="reverse" id="reverse"> -->
         </header>
         <section>
-            <div class="todo-content" id="app">
+            <div class="todo-content" >
                 <input type="checkbox" class="toggle-all" id="ta">
-                <!-- <ul class="listR" id="listR"></ul> -->
                 <ul class="list">
-
+                    <li v-for="item in todos" :key="item.id"><label for="">
+                        {{item.title}}
+                    </label></li>
                 </ul>
-                <label for="ta"></label>
-                <label for="ta"></label>
-                <label for="ta"></label>
             </div>
         </section>
         <footer class="footer">
