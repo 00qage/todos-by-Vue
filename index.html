@@ -16,16 +16,23 @@
         <header class="header">
             <h1>todos</h1>
             <div class="todo-input-box">
-                <input type='text' class="todo" id="todo" placeholder="What needs to be done?" autocomplete="off" autofocus v-model="newtodo" @keyup.enter="addtodo">
+                <input type='text' class="todo" id="todo" placeholder="What needs to be done?" autocomplete="off" autofocus v-model="newtodo"
+                    @keyup.enter="addtodo">
             </div>
         </header>
         <section>
-            <div class="todo-content" >
+            <div class="todo-content">
                 <input type="checkbox" class="toggle-all" id="ta">
                 <ul class="list">
-                    <li v-for="item in todos" :key="item.id"><label for="">
-                        {{item.title}}
-                    </label></li>
+                    <li v-for="item in todos" >
+                        <div class="view">
+                            <input class="toggle" type="checkbox" v-model="item.completed" id="">
+                            <label :for="item.id">
+                                {{item.title}}
+                            </label>
+                            <a class="removebutton" @click.prevent="removetodo(key)" href="#"><i class="fas fa-times"></i></a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>

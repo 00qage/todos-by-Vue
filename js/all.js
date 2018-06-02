@@ -9,15 +9,21 @@ $(document).ready(function () {
         },
         methods:{
             addtodo:function () {
-                var value = this.newtodo;
+                var value = this.newtodo.trim();
                 var times = Date.now();
+                if (!value) {
+                    return;
+                }
                 this.todos.push({
                     id:times,
                     title:value,
                     completed:false
                 });
                 this.newtodo = '';
-               }
+               },
+               removetodo:function (key) {
+                   this.todos.splice(key,1);
+                 }
         },
         computed:{
             
