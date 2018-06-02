@@ -3,30 +3,67 @@ $(document).ready(function () {
     var app = new Vue({
         el: '#app',
         data: {
-            newtodo:'',
-            todos:[],
-
+            newtodo: '',
+            todos: [],
+            visibility: 'all',
+            cacheTodo: {},
+            cacheTitle: '',
         },
-        methods:{
-            addtodo:function () {
+        methods: {
+            addtodo: function () {
                 var value = this.newtodo.trim();
                 var times = Date.now();
                 if (!value) {
                     return;
                 }
                 this.todos.push({
-                    id:times,
-                    title:value,
-                    completed:false
+                    id: times,
+                    title: value,
+                    completed: false,
                 });
                 this.newtodo = '';
-               },
-               removetodo:function (key) {
-                   this.todos.splice(key,1);
-                 }
+            },
+            removetodo: function (key) {
+                this.todos.splice(key, 1);
+            },
+            editTodo: function (item) {
+                this.cacheTodo = item;
+                this.cacheTitle = item.title;
+            },
+            cancelEdit:function () {
+                this.cacheTodo = {};
+              },
+              doneEdit:function (item) {
+                  item.title = this.cacheTitle;
+                  item.cacheTitle = '';
+                  this.cacheTodo = {};
+                }
         },
-        computed:{
-            
+        computed: {
+            filteredTodos: function () {
+                if (this.visibility == 'all') {
+                    return this.todos;
+                } else if (this.visibility == 'active') {
+                    var newtodos = [];
+                    this.todos.forEach(function (item) {
+                        if (!item.completed) {
+                            newtodos.push(item);
+                        }
+                    });
+                    return newtodos;
+                } else if (this.visibility == 'completed') {
+                    var newtodos = [];
+                    this.todos.forEach(function (item) {
+                        if (item.completed) {
+                            newtodos.push(item);
+                        }
+                    });
+                    return newtodos;
+                } else {
+                    return [];
+                }
+            },
+
         }
     })
 
@@ -49,6 +86,6 @@ $(document).ready(function () {
     // todos.push({content: todo.value});
     // })
 
-    
+
 
 });

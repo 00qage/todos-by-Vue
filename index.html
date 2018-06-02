@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./css/all.css">
@@ -20,28 +22,45 @@
                     @keyup.enter="addtodo">
             </div>
         </header>
-        <section>
+        <section v-cloak>
             <div class="todo-content">
-                <input type="checkbox" class="toggle-all" id="ta">
+                <input type="checkbox" class="toggle-all" >
                 <ul class="list">
-                    <li v-for="item in todos" >
-                        <div class="view">
-                            <input class="toggle" type="checkbox" v-model="item.completed" id="">
-                            <label :for="item.id">
+                    <li v-for="(item, key) in filteredTodos" >
+                        <div class="view" v-if="item.id !== cacheTodo.id">
+                            <input class="toggle" type="checkbox" v-model="item.completed" :id="item.id">
+                            <label :for="item.id" :class="{'completed':item.completed}" @dblclick="editTodo(item)">
                                 {{item.title}}
                             </label>
-                            <a class="removebutton" @click.prevent="removetodo(key)" href="#"><i class="fas fa-times"></i></a>
+                            <a class="removebutton" @click.prevent="removetodo(key)" href="#">
+                                <i class="fas fa-times"></i>
+                            </a>
                         </div>
+                        <div class="text-view">
+                                <input type="text" class="text" v-if="item.id === cacheTodo.id" v-model="cacheTitle" @keyup.enter="doneEdit(item)"  @blur="doneEdit(item)" @keyup.esc="cancelEdit()">
+                        </div>
+                        
                     </li>
                 </ul>
             </div>
         </section>
-        <footer class="footer">
-
+        <footer class="footer d-flex flex-row justify-content-between" v-if="todos.length" v-cloak>
+            <span>{{}} items left</span>
+            <ul class="filters d-flex ">
+                <li>
+                    <a :class="{'selected':visibility == 'all'}" @click.prevent="visibility = 'all'" href="#">All</a>
+                </li>
+                <li>
+                    <a :class="{'selected':visibility == 'active'}" @click.prevent="visibility = 'active'" href="#">Active</a>
+                </li>
+                <li>
+                    <a :class="{'selected':visibility == 'completed'}" @click.prevent="visibility = 'completed'" href="#">Completed</a>
+                </li>
+            </ul>
+            <a  href="#">Clear completed</a>
         </footer>
     </section>
     <footer></footer>
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

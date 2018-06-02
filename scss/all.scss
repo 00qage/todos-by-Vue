@@ -62,18 +62,17 @@ body {
     -webkit-appearance: none;
     line-height: 50px;
     transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    &:checked~label {
-      background: #B0095C;
-      &:before {
-        content: "Checkbox is checked.";
-      }
-      &~.circles {
-        //和checkbox同層的元素，開始進行animation
-        animation: loading 3s infinite linear;
-        -webkit-animation: loading 3s infinite linear;
-      }
-    }
+    -webkit-transform: rotate(90deg); // &:checked~label {
+    //   background: #B0095C;
+    //   &:before {
+    //     content: "Checkbox is checked.";
+    //   }
+    //   &~.circles {
+    //     //和checkbox同層的元素，開始進行animation
+    //     animation: loading 3s infinite linear;
+    //     -webkit-animation: loading 3s infinite linear;
+    //   }
+    // }
     &::before {
       content: '❯';
       box-sizing: border-box;
@@ -89,32 +88,20 @@ body {
 
 .list {
   .view {
-    // margin: 0;
-    // width: 100%;
-    // padding: 16px 16px 16px 60px;
     position: relative;
     font-size: 24px;
     border-bottom: 1px solid #ededed;
     background: #ffffff;
-    // margin:auto 0;
-    &:before {
-      // content: "Check me";
-    }
-    .toggle {
-      width: 40px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: 0 auto;
-    }
     label {
       z-index: 1;
       display: block;
       box-sizing: border-box;
       margin-left: 45px;
       padding: 15px 60px 15px 15px;
+      transition: color 0.4s;
     }
     .removebutton {
+      // display: none;
       position: absolute;
       text-align: center;
       z-index: 9;
@@ -126,7 +113,62 @@ body {
       line-height: 40px;
       margin-top: 7px;
       font-size: 20px;
-      color: #cc9a9a;
+      color: #cc9a9a; // transition: color 0.4s;
+      :hover {
+        color: #c25d5d;
+      }
+    }
+  }
+  .toggle {
+    width: 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+  }
+  .text-view {
+    // position: relative;
+    font-size: 24px;
+    border-bottom: 1px solid #ededed;
+    background: #ffffff;
+  }
+  .text {
+    z-index: 2;
+    display: block;
+    box-sizing: border-box;
+    width: 550 - 45px;
+    margin-left: 45px;
+    padding: 9px 15px 9px 15px;
+  }
+}
+
+.footer {
+  background: #fff;
+  color: #777;
+  padding: 10px 15px;
+  height: 50px;
+  line-height: 29px; // text-align: center;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  a {
+    color: #777;
+  }
+}
+
+.filters {
+  li {
+    a {
+      text-decoration: none;
+      margin: 3px;
+      padding: 3px 7px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      &:hover {
+        border-color: rgba(175, 47, 47, 0.1);
+      }
+      &.selected {
+        border-color: rgba(175, 47, 47, 0.2);
+      }
     }
   }
 }
@@ -138,4 +180,13 @@ body {
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #d9d9d9;
+}
+
+[v-cloak] {
+  display: none
 }
