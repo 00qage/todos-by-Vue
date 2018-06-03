@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         <div class="text-view">
-                                <input type="text" class="text" v-if="item.id === cacheTodo.id" v-model="cacheTitle" @keyup.enter="doneEdit(item)"  @blur="cancelEdit()" @keyup.esc="cancelEdit()">
+                                <input type="text" autofocus="autofocus" class="text" v-if="item.id === cacheTodo.id" v-model="cacheTitle" @keyup.enter="doneEdit(item)" @blur="cancelEdit()"  @keyup.esc="cancelEdit()">
                         </div>
                         
                     </li>
@@ -45,7 +45,7 @@
             </div>
         </section>
         <footer class="footer d-flex flex-row justify-content-between" v-if="todos.length" v-cloak>
-            <span>{{}} items left</span>
+            <span>{{activeLength}} items left</span>
             <ul class="filters d-flex ">
                 <li>
                     <a :class="{'selected':visibility == 'all'}" @click.prevent="visibility = 'all'" href="#">All</a>
@@ -57,7 +57,7 @@
                     <a :class="{'selected':visibility == 'completed'}" @click.prevent="visibility = 'completed'" href="#">Completed</a>
                 </li>
             </ul>
-            <a  href="#">Clear completed</a>
+            <a @click.prevent="clearTodos" href="#">Clear completed</a>
         </footer>
     </section>
     <footer></footer>

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    jsAutofocus();
     var app = new Vue({
         el: '#app',
         data: {
@@ -30,14 +30,17 @@ $(document).ready(function () {
                 this.cacheTodo = item;
                 this.cacheTitle = item.title;
             },
-            cancelEdit:function () {
+            cancelEdit: function () {
                 this.cacheTodo = {};
-              },
-              doneEdit:function (item) {
-                  item.title = this.cacheTitle;
-                  item.cacheTitle = '';
-                  this.cacheTodo = {};
-                }
+            },
+            doneEdit: function (item) {
+                item.title = this.cacheTitle;
+                item.cacheTitle = '';
+                this.cacheTodo = {};
+            },
+            clearTodos: function () {
+                this.todos = [];
+            }
         },
         computed: {
             filteredTodos: function () {
@@ -63,7 +66,15 @@ $(document).ready(function () {
                     return [];
                 }
             },
-
+            activeLength: function () {
+                var newTodos = [];
+                this.todos.forEach(function (item) {
+                    if (!item.completed) {
+                        newTodos.push(item);
+                    }
+                });
+                return newTodos.length;
+            }
         }
     })
 
@@ -85,7 +96,10 @@ $(document).ready(function () {
     // console.log(todo.value);
     // todos.push({content: todo.value});
     // })
-
-
+    function jsAutofocus(input) {
+        if (input != null) {
+            input.focus();
+        }
+    }
 
 });
