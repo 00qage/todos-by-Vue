@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         <div class="text-view">
-                                <input type="text" class="text" v-if="item.id === cacheTodo.id" v-model="cacheTitle" @keyup.enter="doneEdit(item)"  @blur="doneEdit(item)" @keyup.esc="cancelEdit()">
+                                <input type="text" class="text" v-if="item.id === cacheTodo.id" v-model="cacheTitle" @keyup.enter="doneEdit(item)"  @blur="cancelEdit()" @keyup.esc="cancelEdit()">
                         </div>
                         
                     </li>
